@@ -1,0 +1,1 @@
+export const WORDS = ['code', 'programming', 'frontend']
