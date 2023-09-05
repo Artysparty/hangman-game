@@ -1,5 +1,7 @@
+import { async } from "yandex-translator/extendedValidator";
 import { KEYBOARD_LETTERS } from "../constants/keyboard-letters";
 import { WORDS } from "../constants/words";
+import { getRandomWord } from "./getRandomWord";
 
 const gameDiv = document.getElementById("game");
 const logoH1 = document.getElementById("logo");
@@ -104,13 +106,13 @@ export const stopGame = (status) => {
 	document.getElementById("play-again").onclick = startGame;
 };
 
-export const startGame = () => {
+export const startGame = async () => {
 	triesLeft = 10;
 	winCount = 0;
-	const randomIndex = Math.floor(Math.random() * WORDS.length);
+
 	logoH1.classList.add("logo-sm");
 
-	const wordToGuess = WORDS[randomIndex];
+	const wordToGuess = await getRandomWord();
 
 	sessionStorage.setItem("word", wordToGuess);
 
